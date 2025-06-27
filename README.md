@@ -23,3 +23,6 @@ This project is built using **Spring Boot** and designed to handle incoming vehi
 - **Maven** for building the project
 - **Eclipse IDE**
 
+## Build and Run
+1. Run docker
+2. Execute build-and-run.sh which builds maven app, runs dockers containers for mysql db and spring app and does tests
