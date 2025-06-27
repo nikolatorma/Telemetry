@@ -7,9 +7,9 @@ spring:
   profiles:
     active: dev
   datasource:
-    url: jdbc:mysql://localhost:3306/telemetry?connectTimeout=10000&socketTimeout=10000
-    username: telemetry_user
-    password: telemetry_password
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/telemetry}
+    username: ${SPRING_DATASOURCE_USERNAME:telemetry_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:telemetry_password}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
