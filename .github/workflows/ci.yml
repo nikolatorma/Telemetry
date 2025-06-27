@@ -38,6 +38,20 @@ jobs:
 
       - name: Set execute permissions on mvnw
         run: chmod +x ./mvnw
+        
+      - name: Start Docker Compose services
+        run: docker compose -f docker-compose.yaml up -d
+
+      - name: Wait for MySQL to be healthy
+        run: |
+          for i in {1..10}; do
+            if docker inspect --format='{{json .State.Health.Status}}' telemetry-mysql | grep -q "healthy"; then
+              echo "MySQL is healthy"
+              break
+            fi
+            echo "Waiting for MySQL..."
+            sleep 5
+          done
 
       - name: Build with Maven (without tests)
         run: ./mvnw clean package -DskipTests
@@ -47,6 +61,3 @@ jobs:
 
       - name: Package Docker images
         run: docker compose -f docker-compose.yaml build
-
-      - name: Run Docker containers
-        run: docker compose -f docker-compose.yaml up -d
