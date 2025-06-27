@@ -1,0 +1,9 @@
+com\telemetry\model\Vehicle.class
+com\telemetry\TelemetryApplication.class
+com\telemetry\model\VehicleMessage.class
+com\telemetry\service\SocketServer.class
+com\telemetry\service\TelemetryService.class
+com\telemetry\parser\VehicleMessageParser.class
+com\telemetry\constant\ProtocolConstants.class
+com\telemetry\model\Driver.class
+com\telemetry\repository\VehicleMessageRepository.class

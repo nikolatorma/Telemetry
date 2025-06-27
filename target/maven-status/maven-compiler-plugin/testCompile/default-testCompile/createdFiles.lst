@@ -1,0 +1,3 @@
+com\telemetry\service\SocketServerTest.class
+com\telemetry\parser\VehicleMessageParserTest.class
+com\telemetry\TelemetryApplicationTests.class

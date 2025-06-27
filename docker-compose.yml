@@ -1,0 +1,38 @@
+services:
+  mysql:
+    image: mysql:8.3
+    container_name: telemetry-mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: telemetry
+      MYSQL_USER: telemetry_user
+      MYSQL_PASSWORD: telemetry_password
+    volumes:
+      - telemetry_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -proot"]
+      interval: 5s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+  app:
+    container_name: telemetry-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/telemetry
+      SPRING_DATASOURCE_USERNAME: telemetry_user
+      SPRING_DATASOURCE_PASSWORD: telemetry_password
+      SPRING_DATASOURCE_DRIVER-CLASS-NAME: com.mysql.cj.jdbc.Driver
+volumes:
+  telemetry_mysql_data:
+

@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: telemetry
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/telemetry?connectTimeout=10000&socketTimeout=10000
+    username: telemetry_user
+    password: telemetry_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  sql:
+    init:
+      mode: always
