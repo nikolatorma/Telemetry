@@ -92,6 +92,9 @@ A central global object maintains application state and allows components (forms
 → No scattered state logic; everything flows through one centralized manager.
 
 - **What components can do**
+
 → Subscribe to AppState.subscribe(callback)
+
 → Modify state via AppState.setState({...})
+
 → Reactively update their UI based on state changes
